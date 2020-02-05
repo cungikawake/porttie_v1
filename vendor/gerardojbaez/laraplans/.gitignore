@@ -1,0 +1,7 @@
+/vendor
+/.phpintel
+/docs/_build
+composer.phar
+composer.lock
+*.sublime-workspace
+/.idea

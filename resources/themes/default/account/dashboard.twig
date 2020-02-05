@@ -1,0 +1,149 @@
+{% extends "account.master" %}
+
+{% block user_area %}
+
+    <div class="card panel-default">
+        <h6 class="card-header bg-white"><i class="mdi mdi-monitor-multiple mr-2"></i> {{ __('Dashboard') }}</h6>
+        <div class="card-body">
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('SALES BOOKING') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">IDR {{ data.total_sales|number_format }}</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-tag-multiple   text-gray-300"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ __('Earnings') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">IDR {{ data.total_earning|number_format }}</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-credit-card  text-gray-300"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Withdraw (Monthly) Card Example -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ __('Withdrawal') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">IDR {{ data.total_wd|number_format }}</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-credit-card  text-gray-300"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{{ __('FINISH BOOKING') }}</div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ data.finish_order|number_format }}</div>
+                            </div>
+                            <div class="col">
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{data.total_order}}%" aria-valuenow="{{data.total_order}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-checkbox-multiple-marked fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">{{ __('Pending Requests') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data.pandding_order|number_format }}</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-more fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('Setting Payment') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Accept payments with credit cards bearing the VISA, Mastercard, JCB and American Express logos.</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-cloud-print fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    <a href="{{url('account/bank-account')}}">
+                        <button class="btn btn-primary">Setting</button>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4"> 
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('Integration API') }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Easy steps to integrate with Porttie.com.</div>
+                        </div>
+                        <div class="col-auto">
+                        <i class="mdi mdi-cloud-braces fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    <a href="{{url('account/settings/api')}}">
+                        <button class="btn btn-primary">Integration</button>
+                    </a>
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}
+

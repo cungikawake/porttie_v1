@@ -1,0 +1,69 @@
+<div class="infinite-scroll">
+
+        <div class="row">
+            {% for item in listings %}
+            <div class="{{ setting('show_search_sidebar') ? 'col-6 col-sm-4 col-md-4' : 'col-6 col-sm-3 col-md-3' }} mb-3">
+                
+                <div class="card box">
+                    {% if item.discount > 0 %}
+                        <div class="ribbon"><span>{{item.discount}}% off</span></div>
+                    {% endif %}
+                    <a href="{{item.url}}"  >
+                        <img class="card-img-top" src="{{ item.thumbnail }}" alt="{{item.title}}" alt="{{item.title}}">
+                    </a>
+                    <div class="card-body">
+                        
+                        <a href="{{item.url}}" style="display: block; font-style: normal;" class="h6 card-subtitle mb-2 text-dark" >{{ item.title }}</a>
+                        
+                        <p class="card-text row mt-0">
+                            {% if item.discount > 0 %}
+                                <span class="col-sm-12 text-default mb-1" style="text-decoration: line-through; color:##8b8f8b;">
+                                    {{format_money(item.price, item.currency)}} 
+                                    <small>{{__('per')}} 
+                                        {{ (item.price_per_unit_display !='')? item.price_per_unit_display : item.pricing_model.duration_name}}
+                                    </small>
+                                </span>
+
+                                <span class="col-sm-12 text-danger truncate mb-1">
+                                        {% set price_sale = item.price - (item.price * (item.discount /100 )) %}
+                                        {{format_money(price_sale, item.currency)}} 
+                                        <small>
+                                        {{__('per')}} 
+                                        {{ (item.price_per_unit_display !='')? item.price_per_unit_display : item.pricing_model.duration_name}}
+                                        </small>
+                                </span>
+                            {% else %}     
+                                <span class="col-sm-12 text-danger truncate mb-1 {% if item.bold %}font-weight-bold{%  endif %}">{{ item.price_formatted }}</span>
+                            {% endif %}
+ 
+                            <small class="col-sm-12 text-muted truncate">{{ item.short_address }} {% if request('sort') == 'distance' %}({{ item.human_distance }}){% endif %}</small>
+                            <!--<small class="col-sm-12 text-muted truncate">{{ item.user.display_name }}</small>-->
+                            <!--<small class="col-sm-6 text-muted text-right"><?= item.created_at->diffForHumans() ?></small>-->
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+    </div>
+
+    {{ listings.appends(request().query()).links() | raw }}
+</div>
+<script>
+setUpScroll();
+function setUpScroll() {
+    if($('.infinite-scroll').length > 0) {
+        $('ul.pagination').hide();
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            loadingHtml: '<img class="d-block mx-auto" src="/images/loader.svg" alt="Loading..." />',
+            padding: 20,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function () {
+                $('ul.pagination').remove();
+            }
+        });
+    }
+}
+</script>

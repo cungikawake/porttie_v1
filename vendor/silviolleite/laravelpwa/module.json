@@ -1,0 +1,16 @@
+{
+    "name": "LaravelPWA",
+    "alias": "laravelpwa",
+    "description": "Looks like an app, feels like an app, but NOT an app.",
+    "thumbnail": "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn%3AANd9GcSsSvJANw1Jokev2-NaJOlp5yYlwMLcB7JWBQMUB5rxJK2Vq6Kw",
+    "keywords": ["laravel", "pwa", "progressive web app"],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "LaravelPWA\\Providers\\LaravelPWAServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

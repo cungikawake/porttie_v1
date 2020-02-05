@@ -1,0 +1,36 @@
+{% extends "layouts.app" %}
+
+{% block content %}
+
+
+    <div class="container-fluid pt-5 pb-5">
+        <!--HEADER SECTION-->
+        <section>
+            <div class="tourz-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="tourz-search-1">
+                            <h1>Plan Your Travel Now!</h1>
+                            <p>Experience the various exciting tour and travel packages and Make hotel reservations, find vacation packages, search cheap hotels and events</p>
+                            <form class="tourz-search-form">
+                                <div class="input-field">
+                                    <input type="text" id="select-city" class="autocomplete">
+                                    <label for="select-city">Enter city</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" id="select-search" class="autocomplete">
+                                    <label for="select-search" class="search-hotel-type">Search over a million tour and travels, sight seeings, hotels and more</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="submit" value="search" class="waves-effect waves-light tourz-sear-btn"> </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--END HEADER SECTION-->
+    </div>
+
+{% endblock %}

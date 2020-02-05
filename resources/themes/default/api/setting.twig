@@ -1,0 +1,26 @@
+{% extends "account.master" %}
+
+{% block user_area %}
+
+    <div class="card panel-default">
+        <h6 class="card-header bg-white"><i class="mdi mdi-key mr-2"></i> {{ __('Setting API Oauth Key') }}</h6>
+        <div class="card-body">
+            <div id="app">
+                <div class="card" style="padding:10px;">
+                    <passport-clients></passport-clients>
+                </div>
+                <hr>
+                <div class="card" style="padding:10px;">
+                    <passport-authorized-clients></passport-authorized-clients>
+                </div>
+                <hr>
+                <div class="card" style="padding:10px;">
+                    <passport-personal-access-tokens></passport-personal-access-tokens>
+                </div>
+            </div>
+              
+            <script src="{{ asset('themes/default/js/passport.js') }}"></script>  
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,54 @@
+@extends('panel::layouts.master')
+
+@section('content')
+    
+    <h2>Orders</h2>
+<br />
+    @include('alert::bootstrap')
+    {!! Form::open(['url' => url()->current(), 'method' => 'GET']) !!}
+    <div class="input-group mb-3">
+        {{Form::text('q', request('q'), ['class' => 'form-control', 'placeholder' => "Search  email buyer..."])}}
+        <div class="input-group-append">
+            <button class="btn btn-secondary" type="submit">Search</button>
+        </div>
+    </div>
+    {!! Form::close() !!}
+    <table class="table table-sm table-striped">
+        <thead class="thead- border-0">
+        <tr>
+            <th scope="col" class="border-0">Order</th>
+            <th scope="col" class="border-0">Listing</th>
+            <th scope="col" class="border-0">Status</th>
+            <th scope="col" class="border-0">Buyer</th>
+            <th scope="col" class="border-0">Amount</th>
+            <th scope="col"  class="border-0">Order Date</th>
+            <th scope="col"  class="border-0">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($orders as $item)
+            <tr>
+                <td><a href="{{route('panel.orders.show', $item)}}" title="{{ $item->id }}">{{ $item->hash }}</a></td>
+                <td>{{str_limit($item->listing->title, 40)}}</td>
+                <td>
+                    @if( $item->status == 'open')
+                    <span class="badge badge-warning">{{$item->status}}</span>
+                    @else
+                    <span class="badge badge-success">{{$item->status}}</span>
+                    @endif
+                </td>
+                <td>{{$item->user->email}}</td>
+                <td>{{$item->currency}} {{number_format($item->amount)}} </td>
+                <td>{{$item->created_at->toFormattedDateString()}}</td>
+                <td>
+                    <a href="{{route('panel.orders.show', $item)}}" class="text-muted float-right"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        @endforeach
+
+        </tbody>
+    </table>
+
+    {{ $orders->appends(app('request')->except('page'))->links() }}
+
+@stop

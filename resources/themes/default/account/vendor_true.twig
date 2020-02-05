@@ -1,0 +1,35 @@
+{% extends "account.master" %}
+
+{% block user_area %}
+
+    
+    <div class="row">
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <img src="https://image.freepik.com/free-photo/crazy-dealer-happy-expression_1194-2493.jpg" alt="porttie" class="img img-responsive">
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+            
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('Success') }}</div>
+                        <div class="p mb-0 font-weight-bold text-gray-800">You are already a part of us</div>
+                        <div class="h3 mb-0 font-weight-bold text-gray-800">Sale your product today.</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="mdi mdi-shopping fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    <a href="{{route('create.index')}}">
+                        <button class="btn btn-primary">{{ __('Sale a Product') }}</button>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+{% endblock %}
+

@@ -1,0 +1,6 @@
+{
+    "name": "travelgo",
+    "extends": "default",
+    "asset-path": "travelgo",
+    "thumbnail": "https://marketplace-kit.s3.amazonaws.com/themes/novum.png"
+}

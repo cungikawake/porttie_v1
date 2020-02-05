@@ -1,0 +1,38 @@
+<hr />
+<div class="row mt-5">
+    <div class="col-sm-4">
+        <div class="custom-control custom-radio">
+            <input type="radio" id="providerRadio{{ payment_provider.key }}" checked name="providerRadio{{ payment_provider.key }}" class="custom-control-input">
+            <label class="custom-control-label" for="providerRadio{{ payment_provider.key }}">{{ _l(payment_provider.display_name) }}</label>
+        </div>
+
+        <p class="small text-muted">{{ _l(payment_provider.description) }}</p>
+        {% if(setting('marketplace_transaction_fee')) %}
+            <p class="small text-muted mb-1">{{ format_money(setting('marketplace_transaction_fee'), setting('currency')) }} {{ __("fee per transaction") }}</p>
+        {% endif %}
+
+        {% if(setting('marketplace_percentage_fee')) %}
+            <p class="small text-muted">{{ setting('marketplace_percentage_fee') }}% {{ __("of transaction cost") }}</p>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-8">
+        <form action="{{ route('connect.paypalsplit.store') }}" method="post">
+            {{ csrf_field() }}
+
+        <div class="form-row ">
+            <div class="form-group col-md-12">
+                {{ form_email('paypal_email', gateway.gateway_id, {'class': 'form-control', 'required': true, 'disabled': payment_provider.identifier, 'placeholder': __('Paypal Email')}) }}
+            </div>
+        </div>
+
+        {% if payment_provider.identifier %}
+            <a href="{{ route('account.payments.unlink', payment_provider) }}" class="small"><i class="fa fa-refresh" aria-hidden="true"></i> {{ __("Unlink") }}</a>
+
+        {% else %}
+            <button type="submit"  class="btn btn-primary">{{ __("Enable :payment", {'payment': payment_provider.display_name} ) }}</button>
+        {% endif %}
+
+        </form>
+    </div>
+</div>
