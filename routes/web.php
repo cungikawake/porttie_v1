@@ -54,6 +54,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => 'jai
     Route::get('email-verification/check/{token}', 'Auth\EmailVerificationController@getVerification')->name('email-verification.check');
 
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('autocomplete', 'HomeController@autocomplete')->name('autocomplete');
+    
     Route::get('/browse', 'BrowseController@listings')->name('browse');
     Route::get('/categories', 'BrowseController@categories')->name('categories');
 
@@ -63,6 +65,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => 'jai
 
 	Route::get('/profile/{user}', 'ProfileController@index')->name('profile'); //PROFILE
 	Route::get('/profile/{user}/follow', 'ProfileController@follow')->name('profile.follow'); //PROFILE
+
+    
 
 	//LISTINGS
 	Route::group(['prefix' => 'listing'], function()
@@ -173,6 +177,6 @@ Route::get('/sendmail','VoucherController@sendmail');
 
 #errors
 Route::get('/suspended',function(){
-    return 'Sorry something went wrong.';
+    return 'Sorry something went wrong. Pleace back to home page';
 })->name('error.suspended');
   

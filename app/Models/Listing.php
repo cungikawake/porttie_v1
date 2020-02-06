@@ -30,7 +30,7 @@ class Listing extends Model
 
     protected $canBeRated = true;
     protected $mustBeApproved = false;
-
+    protected $table = 'listings';
     protected $searchable = [
         'columns' => [
             'listings.title' => 20,

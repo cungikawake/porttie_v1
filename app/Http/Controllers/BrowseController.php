@@ -18,7 +18,7 @@ class BrowseController extends Controller
 {
 
     public function listings(Request $request) {
-        
+          
         #save address in session
         foreach($request->only(['lat', 'lng', 'bounds', 'location']) as $k => $v) {
             session([$k => $v]);

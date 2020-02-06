@@ -43,15 +43,16 @@ class HomeController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {    
         if(!setting('custom_homepage')) {
+              
             return app('App\Http\Controllers\BrowseController')->listings($request);
         }
 
         $current_locale = LaravelLocalization::getCurrentLocale();
         $data['widgets'] = Widget::where('locale', $current_locale)->orderBy('position', 'ASC')->get();
         $data['show_search'] = false;
-         
+        
         MetaTag::set('title', Setting::get('home_title'));
         MetaTag::set('description', 'Porttie is provides Bali Fast Track Airport Service, Lounge, transport, and tour. It&#039;s one stop solution for your travel needs in Bali.');
         MetaTag::set('keywords', Setting::get('site_keywords'));
@@ -60,6 +61,30 @@ class HomeController extends Controller
 
         return view('home.index', $data);
 		
+    }
+
+
+    public function autocomplete(Request $request){
+        if($request['category'] == 'all'){
+            $data = Listing::select('title')
+            ->orderBy('title', 'asc')  
+            ->where('title', 'LIKE', '%'.$request['query'].'%') 
+            ->where('is_published', 1) 
+            ->whereNotNull('is_admin_verified')  
+            ->inRandomOrder()->limit(8)->get();
+        }else{
+            $data = Listing::select('title')
+            ->orderBy('title', 'asc')  
+            ->where('title', 'LIKE', '%'.$request['query'].'%') 
+            ->where('category_id', $request['category']) 
+            ->where('is_published', 1) 
+            ->whereNotNull('is_admin_verified')  
+            ->limit(8)
+            ->get();
+        }
+        
+
+        return response()->json($data);
     }
 
 }
