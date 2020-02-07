@@ -14,7 +14,7 @@
         padding: 10px;
         margin: 0;
         display:block;
-        width:227px;
+        width:350px;
 		
 }
 .ui-menu .ui-menu {
@@ -23,7 +23,7 @@
 .ui-menu .ui-menu-item {
         margin:0;
         padding: 0;
-        width: 200px;
+        width: 300px;
 		border-bottom: 1px solid #007BFF;
 }
 .ui-menu .ui-menu-item a {
@@ -39,50 +39,59 @@
 }
 </style>
 
-<div style=" max-height: 380px;">
- 
+<div style="max-height: 380px;">
     <div class="row   mt-5 mb-0" >
         <div class="col-sm-8 offset-sm-2">
             <h2 class="text-{{widget.alignment}} pb-2 text-white">{{widget.title}}</h2>
             <p class="text-{{widget.alignment}} pb-2  text-white">{{widget.metadata}}</p>
         </div>
     </div>
+</div>
+<div class="card>
+	<div class="row mb-5 mt-0">
+        <div class="col-sm-12 offset-sm-0 mt-3">
 
-	<div class="row mb-5 mt-0" >
-        <div class="col-sm-8 offset-sm-2 mt-3">
+			<form action="{{route(setting('marketplace_index'))}}" method="GET" class=" mb-5">
+				<div class="row">
+					<div class="col-md-3">
+						<label class="text-white"><i class="fa fa-list" aria-hidden="true"></i> Categories</label>
+						<select id="category" class="border border-left-0 form-control form-control-lg" name="category" aria-label="Right Align">
+							<option value=""> {{ __('All Categories')}}</option> 
+							{% for item in items.categories %}
+							<option value="{{ item.id }}"> {{ item.name }}</option> 
+							{% endfor %}
+						</select>
+                    </div>
+					
+					<div class="col-md-3">
+                        <label class="text-white"><i class="fa fa-map" aria-hidden="true"></i> Destinations</label>
+						<input id="location-search" type="text" name="location" style="border-right:2px solid #ccc;" class="typeahead border border-left-0 form-control form-control-lg" placeholder="{{ __("Bali, Kuta, etc...") }}" aria-label="Left Align">
+                    </div>
 
-		<form action="{{route(setting('marketplace_index'))}}" method="GET" class=" mb-5">
+					<div class="col-md-3">
+                        <label class="text-white"><i class="fa fa-binoculars" aria-hidden="true"></i> Looking for </label>
 
-			<div class="input-group mb-5">
-				<div class="input-group-prepend">
-					<button class="btn btn-default bg-white border border-right-0 btn-lg" type="button" aria-label="Right Align"><i class="fa fa-list" aria-hidden="true"></i></button>
+						<input id="keyword" type="text" name="q" style="border-right:2px solid #ccc;" class="typeahead border border-left-0 form-control form-control-lg" placeholder="{{ __("fast track, ubud tour, etc...") }}" aria-label="Left Align">
+						
+
+						{{ form_hidden('lat', input_get('lat', session_get('lat')), {'class': 'lat'}) }}
+						{{ form_hidden('lng', input_get('lng', session_get('lng')), {'class': 'lng'}) }}
+						{{ form_hidden('bounds', input_get('bounds', session_get('bounds')), {'class': 'bounds'}) }}
+						{{ form_hidden('distance', input_get('distance', session_get('distance')), {'class': 'distance'}) }}
+						
+                    </div>
+					<div class="col-md-3">
+						<div class="input-group-append" style="margin-top:30px;">
+							<button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i> {{ __("Search") }}</button>
+						</div>
+					</div>
 				</div>
-
-				<select id="category" class="border border-left-0 form-control form-control-lg" name="category" style="border-radius:0;-webkit-appearance: none; -moz-appearance: none;" aria-label="Right Align">
-					<option value=""> {{ __('All Categories')}}</option> 
-					{% for item in items.categories %}
-					<option value="{{ item.id }}"> {{ item.name }}</option> 
-					{% endfor %}
-				</select>
-
-				<div class="input-group-prepend">
-					<button class="btn btn-default bg-white border border-right-0 btn-lg" type="button" aria-label="Right Align"><i class="fa fa-search" aria-hidden="true"></i></button>
-				</div>
-
-				<input id="keyword" type="text" name="q" style="border-right:2px solid #ccc;" class="typeahead border border-left-0 form-control form-control-lg" placeholder="{{ __("Search...") }}" aria-label="Left Align">
-
-
-				<div class="input-group-append">
-					<button class="btn btn-primary btn-lg" type="submit">{{ __("Search") }}</button>
-				</div>
-			</div>
-
-		</form>
-
+				 
+			</form>
 		</div>
 	</div>
-
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
 
@@ -115,4 +124,33 @@ $(document).ready(function(){
 		    minLength: 2
 	 	});
 });
+</script>
+
+<script>
+	var autocomplete = new google.maps.places.Autocomplete($("#location-search")[0], {});
+
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		var place = autocomplete.getPlace();
+		if (place.name == "") {
+			$(".lat").val('');
+			$(".lng").val('');
+			$(".bounds").val('');
+			$(".distance").val('-1');
+		} else {
+			$(".lat").val(place.geometry.location.lat());
+			$(".lng").val(place.geometry.location.lng());
+
+
+			console.log(place.geometry.viewport.getSouthWest().lat());
+			$('.bounds').val(place.geometry.viewport.getSouthWest().lat() + "," + place.geometry.viewport.getSouthWest().lng() + ',' + place.geometry.viewport.getNorthEast().lat() + "," + place.geometry.viewport.getNorthEast().lng());
+			$('.distance').val(1);
+		}
+		$("#top-search").submit();
+	});
+	$("#location-search").change( function() {
+		$(".lat").val('');
+		$(".lng").val('');
+		$(".bounds").val('');
+		$(".distance").val('-1');
+	});
 </script>

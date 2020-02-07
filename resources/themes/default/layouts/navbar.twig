@@ -18,9 +18,11 @@
          <ul class="navbar-nav mr-auto">
              {% if supported_locales()|length > 1 %}
            <li class="nav-item">
-               <div class="dropdown">
+               <div class="dropdown text-light">
                    <button class="btn btn-link language-selector dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       <i class="fa fa-language" aria-hidden="true"></i> {{ current_locale_native() }}
+                       <span class="text-light">
+                            <i class="fa fa-language" aria-hidden="true"></i> {{ current_locale_native() }}
+                       </span>
                    </button>
                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                        {% for localeCode, properties in supported_locales() %}
@@ -41,19 +43,19 @@
 
              {%  if setting('custom_homepage') or module_enabled('homepage') %}
              <li class="nav-item {{ active([route(setting('marketplace_index'))]) }}">
-                 <a class="nav-link" href="{{ route(setting('marketplace_index')) }}">{{ __("Browse") }}</a>
+                 <a class="nav-link text-light" href="{{ route(setting('marketplace_index')) }}">{{ __("Explore") }}</a>
              </li>
              {% endif %}
 			 
              {%  if module_enabled('usersearch') %}
              <li class="nav-item {{ active([route('usersearch.index')]) }}">
-                 <a class="nav-link" href="{{ route('usersearch.index') }}">{{ __("Members") }}</a>
+                 <a class="nav-link text-light" href="{{ route('usersearch.index') }}">{{ __("Members") }}</a>
              </li>
              {% endif %}
 
              {% for item in menu() %}
              <li class="nav-item {{ active([item.url|trim('/')]) }}">
-                <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
+                <a class="nav-link text-light" href="{{ item.url }}">{{ item.title }}</a>
              </li>
              {% endfor %}
          </ul>
@@ -63,7 +65,7 @@
         <ul class="navbar-nav">
             {% if auth_guest() %}
                 <li class="nav-item">
-                    <a class="nav-link text-s text-light" href="{{ route('create.index') }}"><i class="fa fa-cube"></i> {{ __("Post your product") }}</a>
+                    <a class="nav-link text-s text-light" href="{{ route('create.index') }}"><i class="fa fa-cube"></i> {{ __("Sale your product") }}</a>
                 </li>
                 <li class="nav-item"><a class="nav-link text-s text-light btn btn-default btn-block " href="{{ route('login') }}"><i class="fa fa-user"></i> {{ __("Sign in") }} </a></li>
                 <li class="nav-item">
