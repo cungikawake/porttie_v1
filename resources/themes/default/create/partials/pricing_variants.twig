@@ -2,8 +2,8 @@
 
 <div class="card mb-4">
     <h6 class="card-header bg-white">
-        {{ __("Variations") }} 
-        
+        {{ __("Product Variations") }} 
+        <p class="form-text text-muted small">{{ __("Price variations will appear after being moved") }}</p>
     </h6>
 
 
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <input type="text" name="options" value="{{ variant_option|join(',') }}" placeholder="{{ __("e.g. small, medium, large") }}" class="tags "/>
-                                    <small class="text-warning">({{ __("After save listing, please update price variation again!") }})</small>
+                                    <small class="text-default">({{ __("After save listing, please update price variation again!") }})</small>
                                 </div>
                                 <div class="col-sm-1">
                                         <span data-repeater-delete class="btn btn-link btn-lg">
@@ -87,14 +87,14 @@
             <table class="table table-sm">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">{{ __("Variation") }}</th>
-                        <th scope="col">{{ __("Additional Price") }}</th>
-                        <th scope="col">{{ __("Stock") }} per day</th>
+                        <th scope="col">{{ __("Name") }}</th>
+                        <th scope="col">{{ __("Price") }}</th>
+                        <th scope="col">{{ __("Stock per day") }} </th>
                         {% if listing.pricing_model.widget == 'book_date' or listing.pricing_model.widget == 'book_time'  %}
-                            <th scope="col">{{ __("Max Guest") }}</th>
+                            <th scope="col">{{ __("Max guest") }}</th>
                         {% endif %}
-                        <th scope="col">{{ __("Start") }}</th>
-                        <th scope="col">{{ __("Finish") }}</th>
+                        <th scope="col">{{ __("Start sale") }}</th>
+                        <th scope="col">{{ __("Finish sale") }}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -2,12 +2,10 @@
 .owl-item{ padding:5px; }
 .truncate { white-space: normal;}
 </style>
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
     <div class="col-8">
-        <h4 class="text-{{widget.alignment}} mb-4">{{ __('Your favorite') }}</h4>
-    </div>
-    <div class="col-4">
-         
+        <h4 class="text-{{widget.alignment}} mb-0">{{ __('Your favorite') }}</h4>
+        <small class="mb-2">{{ __('its time to enjoy a new experience') }}</small>
     </div> 
 </div> 
 
@@ -59,12 +57,11 @@
     </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
     <div class="col-9">
-        <h4 class="text-{{widget.alignment}} mb-4">{{widget.title}}</h4>
-    </div>
-    <div class="col-3"> 
-    </div>
+        <h4 class="text-{{widget.alignment}} mb-0">{{widget.title}}</h4>
+        <small class="mb-2">{{ __('Book now before going too far') }}</small>
+    </div> 
 </div> 
  
 <div class="row  mb-3">
@@ -112,10 +109,11 @@
     </div>
 </div>
  
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
 
     <div class="col-9">
-        <h4 class="text-{{widget.alignment}} mb-4">{{ __( 'Best Vip services Airport' )}}</h4>
+        <h4 class="text-{{widget.alignment}} mb-0">{{ __( 'Best Vip services Airport' )}}</h4>
+        <small class="mb-2">{{ __('Fast track services at the airport') }}</small>
     </div>
     <div class="col-3">
         <a href="/browse?q=&view=grid&location=&lat=&lng=&sort=&bounds=&distance=-1&category=2&price_min=&price_max=" class="btn btn-secondary btn-sm float-right">{{__('VIEW ALL')}} <i class="mdi mdi-chevron-right"></i></a>
@@ -178,10 +176,11 @@
     </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
 
     <div class="col-9">
-        <h4 class="text-{{widget.alignment}} mb-4">{{ __( 'The most economical recreation' )}}</h4>
+        <h4 class="text-{{widget.alignment}} mb-0">{{ __( 'The most economical recreation' )}}</h4>
+        <small class="mb-2">{{ __('many beautiful places are waiting for you') }}</small>
     </div>
     <div class="col-3">
         <a href="/browse?q=&view=grid&location=&lat=&lng=&sort=&bounds=&distance=-1&category=4&price_min=&price_max=" class="btn btn-secondary btn-sm float-right">{{__('VIEW ALL')}} <i class="mdi mdi-chevron-right"></i></a>
@@ -246,8 +245,9 @@
 
 <div class="row mt-3">
 
-    <div class="col-9">
-        <h4 class="text-{{widget.alignment}} mb-4">{{ __( 'Cheapest airport shuttle' )}}</h4>
+    <div class="col-9 mb-2">
+        <h4 class="text-{{widget.alignment}} mb-0">{{ __( 'Cheapest airport shuttle' )}}</h4>
+        <small class="mb-2">{{ __('order a vehicle from any airport') }}</small>
     </div>
     <div class="col-3">
         <a href="/browse?q=&view=grid&location=&lat=&lng=&sort=&bounds=&distance=-1&category=3&price_min=&price_max=" class="btn btn-secondary btn-sm float-right">{{__('VIEW ALL')}} <i class="mdi mdi-chevron-right"></i></a>
@@ -310,10 +310,11 @@
 </div>
 
 
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
 
     <div class="col-9">
-        <h4 class="text-{{widget.alignment}} mb-4">{{ __( 'Latest products on offer' )}}</h4>
+        <h4 class="text-{{widget.alignment}} mb-0">{{ __( 'Latest products on offer' )}}</h4>
+        <small class="mb-2">{{ __('new and interesting products') }}</small>
     </div>
     <div class="col-3">
         <a href="{{route(setting('marketplace_index'))}}" class="btn btn-secondary btn-sm float-right">{{__('VIEW ALL')}} <i class="mdi mdi-chevron-right"></i></a>

@@ -31,7 +31,7 @@ class OrdersController extends Controller
 
         $this->authorize('update', $order); 
         
-        \QrCode::size(500)
+        QrCode::size(500)
         ->format('png')
         ->generate(url('/account/orders/'.$order->hash), public_path('images/qrcode_'.$order->id.'.png'));
          
